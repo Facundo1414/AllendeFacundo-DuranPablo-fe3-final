@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useTheme } from "./utils/ThemeContext";
 
 const Form = () => {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const { theme } = useTheme();
+
+  const formStyle = theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-700 text-white';
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,20 +44,20 @@ const Form = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Nombre completo</label>
-        <input id="username" type="text" placeholder="Ingrese su nombre completo" />
+    
+      <form className={`gap-4 Contact ${formStyle}`} onSubmit={handleSubmit}>
+        <label className="" htmlFor="username">Nombre completo</label>
+        <input className="text-black p-2 border-solid border-2 rounded-lg	" id="username" type="text" placeholder="Ingrese su nombre completo" />
 
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" placeholder="Ingrese su email" />
+        <input className="text-black p-2 border-solid border-2 rounded-lg	" id="email" type="text" placeholder="Ingrese su email" />
 
-        <button type="submit">Enviar</button>
+        <button className=" p-2 border-solid border border-y-indigo-500 rounded-lg	" type="submit">Enviar</button>
 
         {error && <p>{error}</p>}
         {successMessage && <p>{successMessage}</p>}
       </form>
-    </div>
+    
   );
 };
 

@@ -53,7 +53,6 @@ footer {
   bottom: 0;
   width: 90%;
   height: 40px;
-  margin-top: 2rem;
 }
 
 footer > img{
@@ -126,4 +125,27 @@ tr:nth-child(even) {
 }
 .dark > a {
   color: white;
+}
+
+
+.pretty-button {
+  background-color: #3ca5ce;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pretty-button:hover {
+  background-color: #43bbeb;
+}
+
+.Contact {
+  padding: 4rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  margin: 0 auto;
+  height: 22rem;
 }
