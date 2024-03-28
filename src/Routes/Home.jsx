@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
+import { useTheme } from '../Components/utils/global.context';
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
 
-  //inicialmente usaremos useSTATE para guardar la info de la API
   const [odontologos, setOdontologos] = useState([])
+  const { theme } = useTheme();
 
-//   La API a utilizar sera la siguiente:
-// `https://jsonplaceholder.typicode.com/users`
+  const mainStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
 
   const getOdontologos = async()=>{
     const res = await fetch("https://jsonplaceholder.typicode.com/users")
@@ -24,10 +23,8 @@ const Home = () => {
 
 
   return (
-    <main className="" >
-      <h1>Home</h1>
-      <div className='card-grid'>
-        {/* Aqui deberias renderizar las cards */}
+    <main className={`${mainStyle} h-screen`}>
+      <div className='card-grid pt-10'>
         {odontologos?.map(odon => (<Card key={odon.id} id={odon.id} name={odon.name} username={odon.username}/>) )}
       </div>
     </main>

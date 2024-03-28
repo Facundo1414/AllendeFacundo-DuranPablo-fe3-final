@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import ThemeContext from './utils/ThemeContext';
+import ThemeProvider from '../Components/utils/global.context';
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeProvider);
 
   const navbarStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
   const linkStyle = theme === 'dark' ? 'text-white' : 'text-black';

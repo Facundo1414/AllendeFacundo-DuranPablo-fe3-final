@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTheme } from "./utils/ThemeContext";
+import { useTheme } from "./utils/global.context";
 
 const Form = () => {
   const [error, setError] = useState('');

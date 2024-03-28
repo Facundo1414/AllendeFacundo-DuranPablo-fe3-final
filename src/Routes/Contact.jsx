@@ -1,14 +1,11 @@
 import React from 'react'
 import Form from '../Components/Form'
-import { useTheme } from '../Components/utils/ThemeContext';
+import { useTheme } from '../Components/utils/global.context';
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Contact = () => {
   const { theme } = useTheme();
-
   const mainStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
-
 
   return (
     <div className={`flex flex-col items-center justify-center h-auto py-24   ${mainStyle}`}>

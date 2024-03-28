@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTheme } from '../Components/utils/global.context';
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
-  // Api para cada dentista en especifico:
-  // `https://jsonplaceholder.typicode.com/users/:id`
-  
-  const [odontologo, setOdontologo] = useState([])
+  const { theme } = useTheme();
+  const mainStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
 
+  const [odontologo, setOdontologo] = useState([])
   const params = useParams()
 
   const getOdontologo = async()=>{
@@ -25,18 +23,17 @@ const Detail = () => {
 
   return (
     <>
-      <h1>Detail Dentist </h1>
-      {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-      {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
       {odontologo?
-        <div>
-          <img className="w-10 h-10" src="/images/doctor.jpg" alt="imagenDoctor" />
-          <div>
-            <h3>Name: {odontologo.name}</h3>
-            <h3>Username: {odontologo.username}</h3>
-            <h3>Email: {odontologo.email}</h3>
-            <h3>Phone: {odontologo.phone}</h3>
-            <h3>Website: <a href={"https://"+odontologo.website} target='_blank'>{odontologo.website}</a></h3>
+        <div className={`${mainStyle} flex flex-col items-center p-10 gap-10 h-screen`}>
+          <img className="w-24 h-24" src="/images/doctor.jpg" alt="imagenDoctor" />
+          <div className='font-medium text-xl'>
+            <h2>Name: {odontologo.name}</h2>
+            <h2>Username: {odontologo.username}</h2>
+            <h2>Email: {odontologo.email}</h2>
+            <h2>Phone: {odontologo.phone}</h2>
+            <h2 >Website: 
+              <a className={`${mainStyle}`} href={"https://"+odontologo.website} target='_blank'>{odontologo.website}</a>
+            </h2>
           </div>
         </div>
         : ""}

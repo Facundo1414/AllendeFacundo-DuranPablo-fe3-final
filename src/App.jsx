@@ -5,13 +5,13 @@ import Home from "./Routes/Home";
 import Contact from "./Routes/Contact";
 import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
-import { ThemeProvider } from "./Components/utils/ThemeContext";
+import { ContextProvider } from "./Components/utils/global.context";
 
 
 
 function App() {
   return (
-    <ThemeProvider>
+    <ContextProvider>
       <BrowserRouter className="App">
           <Navbar/>
           <Routes>
@@ -23,7 +23,7 @@ function App() {
           </Routes>
           <Footer/>
       </BrowserRouter>
-    </ThemeProvider>
+    </ContextProvider>
   );
 }
 
