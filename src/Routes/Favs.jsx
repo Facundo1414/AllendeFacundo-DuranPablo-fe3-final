@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Components/Card";
-import { useTheme } from '../Components/utils/global.context';
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import { useFavsStates, useTheme } from '../Components/utils/global.context';
 
 const Favs = () => {
-  const [favoriteCards, setFavoriteCards] = useState([]);
-
+  //Estilos
   const { theme } = useTheme();
   const mainStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
 
+  // Lista de ondontologos favoritos
+  const {favsState} = useFavsStates()
 
-
-  useEffect(() => {
-    const storedFavs = JSON.parse(localStorage.getItem('favoriteCards'));
-    if (storedFavs) {
-      setFavoriteCards(storedFavs);
-    }
-  }, []);
   return (
-    <div className={`${mainStyle} h-screen`}>
-      <h1 className="text-2xl">Dentists Favs</h1>
+    <div className={`${mainStyle} h-screen p-12 space-y-5`}>
+      <h1 className="text-2xl font-bold font-mono">FAVORITES</h1>
       <div className="card-grid">
-        {favoriteCards.map((fav) => (
-            <Card key={fav.id} name={fav.name} username={fav.username} id={fav.id} />
-          ))}
+        {favsState.favs?.map((fav) => <Card key={fav.id} id={fav.id} name={fav.name} username={fav.username} btn={"del"}/>)}
       </div>
     </div>
   );

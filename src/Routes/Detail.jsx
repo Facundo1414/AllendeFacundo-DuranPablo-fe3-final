@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTheme } from '../Components/utils/global.context';
 
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
-
 const Detail = () => {
   const { theme } = useTheme();
   const mainStyle = theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black';
@@ -17,7 +14,6 @@ const Detail = () => {
     const data = await res.json()
     await setOdontologo(data)
   }
-
 
   useEffect(()=>{getOdontologo()},[])
 

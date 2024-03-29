@@ -1,20 +1,41 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from '../Components/utils/global.context';
+import { useFavsStates, useTheme } from '../Components/utils/global.context';
 
-const Card = ({ name, username, id }) => {
+const Card = ({ name, username, id, btn }) => {
+  //Estilos
   const { theme } = useTheme();
   const divStyle = theme === 'dark' ? 'bg-gray-200 text-black' : 'bg-blue-200';
-  //const {dispatchFavoritos} = useProductStates();
 
+  // Add odontologo a lista de favs
+  const {dispatchFavs, favsState} = useFavsStates() // const [a, seta] = USESATE
   const addFav = () => {
-    if ("ya existe el favorito ") {
-      //dispatchFavoritos({type: "deleteFavorites" , payload: item.id});
+    const isFavorite = favsState?.favs.some(fav => fav.id === id); // Check if the id exists in favorites
+    if (!isFavorite) {
+        dispatchFavs({ type: "addFavorites", payload: { name, username, id } });
+        alert("Se agrego a favoritos")
+    } else {
+      console.log("Ya existe en favs");
     }
-    else{
-      //dispatchFavoritos({ type: "addFavorites", payload: { name, username, id } });
-    }
+}
+  // delete odontologo de la lista de favs
+  const deleteFav = ()=> {
+    dispatchFavs({type:"deleteFavorites", payload: { name, username, id }})
+    alert("Se elimino de favoritos")
   }
+
+  //
+  const [optionBtn, setOptionBtn] = useState(true)
+
+  useEffect(()=>{
+    if (btn == "add") {
+      setOptionBtn(true)
+    }
+    if (btn == "del") {
+      setOptionBtn(false)
+    }
+
+  },[btn])
 
     return (
       <div to={`/detail/${id}`} className={`card ${divStyle} shadow-md`}>
@@ -23,7 +44,11 @@ const Card = ({ name, username, id }) => {
             <h4>{name}</h4>
             <h4><p className="font-bold">Username: </p>{username}</h4>
           </Link>
-          <button onClick={addFav} className="favButton rounded-full bg-sky-500 hover:bg-sky-600 ...">Add fav</button>
+          {optionBtn? 
+            <button onClick={addFav} className="favButton rounded-full bg-sky-500 hover:bg-sky-600 ...">Add fav</button>
+          : 
+            <button onClick={deleteFav} className="favButton rounded-full bg-sky-500 hover:bg-sky-600 ...">Del fav</button>
+          }
       </div>
     );
 };

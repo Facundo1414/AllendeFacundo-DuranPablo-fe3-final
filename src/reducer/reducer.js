@@ -1,17 +1,17 @@
-const reducerFavs = (state, action)=> {
+export const reducer = (state, action)=> {
     switch(action.type){
+        case "getFavorites":
+            return {...state, odontologos: action.payload}
         case 'addFavorites':
-            const { name, username, id } = action.payload;
-            const newCard = { name, username, id };
-            // Agregar lógica para guardar en el localStorage
-            const updatedFavs = [...state, newCard];
-            localStorage.setItem('favoriteCards', JSON.stringify(updatedFavs));
-            return updatedFavs;
+            return {...state, favs: [...state.favs, action.payload]};
 
         case 'deleteFavorites':
             const item = action.payload;
-            localStorage.removeItem('favoriteCards', JSON.stringify(item))
+            const favs =  {...state, odontologos: action.payload}
             return
+
+        case "changeTheme":
+            return {}
         default:
             return state;
     }
