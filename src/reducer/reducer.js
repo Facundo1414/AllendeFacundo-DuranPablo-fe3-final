@@ -7,8 +7,9 @@ export const reducer = (state, action)=> {
 
         case 'deleteFavorites':
             const item = action.payload;
-            const favs =  {...state, odontologos: action.payload}
-            return
+            const favs = state.favs.filter(fav => fav.id !== item.id); // Filtrar los favoritos para excluir el ítem a eliminar
+            
+            return {...state, favs}; // Devolver el nuevo estado con la lista de favoritos actualizada
 
         case "changeTheme":
             return {}

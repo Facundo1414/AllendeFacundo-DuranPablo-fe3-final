@@ -10,7 +10,7 @@ export const initialState = {
   theme: 'light', data: [] 
 };
 
-//
+ // 
 export const ContextGlobal = createContext(initialState);
 
 export const ContextProvider = ({ children }) => {
@@ -40,10 +40,7 @@ export const ContextProvider = ({ children }) => {
   },[favsState.favs])
 
   // Para eliminar en local storage
-
   
-
-
 
 
   return (

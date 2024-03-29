@@ -8,7 +8,8 @@ const Card = ({ name, username, id, btn }) => {
   const divStyle = theme === 'dark' ? 'bg-gray-200 text-black' : 'bg-blue-200';
 
   // Add odontologo a lista de favs
-  const {dispatchFavs, favsState} = useFavsStates() // const [a, seta] = USESATE
+  const {dispatchFavs, favsState} = useFavsStates() 
+  
   const addFav = () => {
     const isFavorite = favsState?.favs.some(fav => fav.id === id); // Check if the id exists in favorites
     if (!isFavorite) {
